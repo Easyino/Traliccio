@@ -3,12 +3,9 @@
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
 #ifndef STASSID
-#define STASSID "federico-Inspiron-5567-nuovo"
-#define STAPSK  "password"
-//#define STASSID "FBI-van"
-//#define STAPSK "ajejejeje"
-//#define STASSID "Wing-Fibra"
-//#define STAPSK "baggiocostantinis18082001"
+
+#define STASSID "SSID"
+#define STAPSK "PASSWORD"
 
 #endif
 const char *ssid = STASSID;
@@ -74,10 +71,11 @@ statoTraliccio(5);
 }
 
 void loop(void) {
+  Serial.println(WiFi.localIP());
   digitalWrite(D0, statoLinea);
   Serial.println((float)corrente);
 
-  if ( millis() - ultima_lettura > 10) {
+  if ( millis() - ultima_lettura > 20) {
     ultima_lettura = millis();
     aggiornaValori();
     if (n_valori >= 100) {
